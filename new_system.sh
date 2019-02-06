@@ -26,6 +26,7 @@ elif [ ${OS} = "Linux"  ];then
                 #echo "export http_proxy=http://127.0.0.1:8118" >> /etc/enviroment
                 #echo "export https_proxy=http://127.0.0.1:8118" >> /etc/enviroment
                 #sudo /etc/init.d/privoxy start
+                cat ~/.ssh/id_rsa.pub
                 ;;
             centos|fedora|rhel)
                 yumdnf="yum"
@@ -43,7 +44,11 @@ elif [ ${OS} = "Linux"  ];then
                 ;;
         esac
     elif [ -x /data/data/com.termux/files/home ];then
-        pkg install git vim zsh curl wget openssh
+        pkg install git vim zsh curl wget openssh unzip unrar
+        sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+        git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        cat ~/.ssh/id_rsa.pub
     fi
 else
     echo "Other OS: ${OS}"
