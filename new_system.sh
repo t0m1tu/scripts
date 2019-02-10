@@ -13,11 +13,13 @@ elif [ ${OS} = "Linux"  ];then
                 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
                 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
                 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-                #sed -i '/git/a\\zsh-autosuggestions' ~/.zshrc
-                #sed -i '/git/a\\zsh-syntax-highlighting' ~/.zshrc
-                #sed -i '/git/a\\x' ~/.zshrc
-                #sed -i '/git/a\\sudo' ~/.zshrc
-                #sed -i '/git/a\\extract' ~/.zshrc
+                sed -i "/s/plugins=(git)/plugins=(/g" .zshrc
+                sed -i "/plugins=(/a\\git" ~/.zshrc
+                sed -i "/plugins(/a\\zsh-autosuggestions" ~/.zshrc
+                sed -i "/plugins=(/a\\zsh-syntax-highlighting" ~/.zshrc
+                sed -i "/plugins=(/a\\x" ~/.zshrc
+                sed -i "/plugins=(/a\\sudo" ~/.zshrc
+                sed -i "/plugins=(/a\\extract" ~/.zshrc
                 source ~/.zshrc
                 ssh-keygen
                 #wget https://github.com/t0m1tu/ssr-backup/raw/master/ShadowsocksR-Python.zip
@@ -48,6 +50,16 @@ elif [ ${OS} = "Linux"  ];then
         sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
         git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        sed -i "/s/plugins=(git)/plugins=(/g" .zshrc
+        sed -i "/plugins=(/a\\git" ~/.zshrc
+        sed -i "/plugins(/a\\zsh-autosuggestions" ~/.zshrc
+        sed -i "/plugins=(/a\\zsh-syntax-highlighting" ~/.zshrc
+        sed -i "/plugins=(/a\\x" ~/.zshrc
+        sed -i "/plugins=(/a\\sudo" ~/.zshrc
+        sed -i "/plugins=(/a\\extract" ~/.zshrc
+        chsh -s zsh
+        source ~/.zshrc
+        ssh-keygen
         cat ~/.ssh/id_rsa.pub
     fi
 else
