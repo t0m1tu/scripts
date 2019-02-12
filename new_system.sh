@@ -46,7 +46,7 @@ elif [ ${OS} = "Linux"  ];then
                 ;;
         esac
     elif [ -x /data/data/com.termux/files/home ];then
-        pkg install git vim zsh curl wget openssh unzip unrar
+        pkg install git vim zsh curl wget openssh unzip unrar nodejs
         sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
         git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
