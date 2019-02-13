@@ -57,8 +57,8 @@ elif [ ${OS} = "Linux"  ];then
                 echo -E "${newwanip}"" >> /root/echo_ip.sh
                 echo -E "curl "http://sc.ftqq.com/${key}.send?text=${title}" -d "&desp=${content}"" >> /root/echo_ip.sh
                 chmod +x /root/echo_ip.sh
-                sed -i "/exit 0/i\\sleep 100" /etc/echo_ip.sh
-                sed -i "/exit 0/i\\sh /root/echo_ip.sh" /etc/echo_ip.sh
+                sed -i "/exit 0/i\\sleep 100" /etc/rc.local
+                sed -i "/exit 0/i\\sh /root/echo_ip.sh" /etc/rc.local
                 ;;
             *)
                 exit 1
