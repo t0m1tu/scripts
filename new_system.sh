@@ -45,17 +45,17 @@ elif [ ${OS} = "Linux"  ];then
                 ;;
             openwrt)
                 opkg update
-                echo -E "#!/bin/sh" > /root/echo_ip.sh
-                echo -E "newwanip=`wget http://ipecho.net/plain -q -O -`" >> /root/echo_ip.sh
-                echo -E "key="SCU43428Tc83dead8e10154baa6820305a9c851075c4d837016307"" >> /root/echo_ip.sh
-                echo -E "title="IP"" >> /root/echo_ip.sh
-                echo -E "date=`date +%Y-%m-%d`" >> /root/echo_ip.sh
-                echo -E "time=`date +%H:%M:%S`" >> /root/echo_ip.sh
-                echo -E "content="" >> /root/echo_ip.sh
-                echo -E "${date}" >> /root/echo_ip.sh
-                echo -E "${time}" >> /root/echo_ip.sh
-                echo -E "${newwanip}"" >> /root/echo_ip.sh
-                echo -E "curl "http://sc.ftqq.com/${key}.send?text=${title}" -d "&desp=${content}"" >> /root/echo_ip.sh
+                echo '#!/bin/sh' > /root/echo_ip.sh
+                echo 'newwanip=`wget http://ipecho.net/plain -q -O -`' >> /root/echo_ip.sh
+                echo 'key="SCU43428Tc83dead8e10154baa6820305a9c851075c4d837016307"' >> /root/echo_ip.sh
+                echo 'title="IP"' >> /root/echo_ip.sh
+                echo 'date=`date +%Y-%m-%d`' >> /root/echo_ip.sh
+                echo 'time=`date +%H:%M:%S`' >> /root/echo_ip.sh
+                echo 'content="' >> /root/echo_ip.sh
+                echo '${date}' >> /root/echo_ip.sh
+                echo '${time}' >> /root/echo_ip.sh
+                echo '${newwanip}"' >> /root/echo_ip.sh
+                echo 'curl "http://sc.ftqq.com/${key}.send?text=${title}" -d "&desp=${content}"' >> /root/echo_ip.sh
                 chmod +x /root/echo_ip.sh
                 sed -i "/exit 0/i\\sleep 100" /etc/rc.local
                 sed -i "/exit 0/i\\sh /root/echo_ip.sh" /etc/rc.local
