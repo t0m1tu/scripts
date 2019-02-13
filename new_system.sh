@@ -45,20 +45,20 @@ elif [ ${OS} = "Linux"  ];then
                 ;;
             openwrt)
                 opkg update
-                echo -E "#!/bin/sh" > /root/rc.local
-                echo -E "newwanip=`wget http://ipecho.net/plain -q -O -`" >> /root/rc.local
-                echo -E "key="SCU43428Tc83dead8e10154baa6820305a9c851075c4d837016307"" >> /root/rc.local
-                echo -E "title="IP"" >> /root/rc.local
-                echo -E "date=`date +%Y-%m-%d`" >> /root/rc.local
-                echo -E "time=`date +%H:%M:%S`" >> /root/rc.local
-                echo -E "content="" >> /root/rc.local
-                echo -E "${date}" >> /root/rc.local
-                echo -E "${time}" >> /root/rc.local
-                echo -E "${newwanip}"" >> /root/rc.local
-                echo -E "curl "http://sc.ftqq.com/${key}.send?text=${title}" -d "&desp=${content}"" >> /root/rc.local
-                chmod +x /root/rc.local
-                sed -i "/exit 0/i\\sleep 100" /etc/rc.local
-                sed -i "/exit 0/i\\sh /root/echo_ip.sh" /etc/rc.local
+                echo -E "#!/bin/sh" > /root/echo_ip.sh
+                echo -E "newwanip=`wget http://ipecho.net/plain -q -O -`" >> /root/echo_ip.sh
+                echo -E "key="SCU43428Tc83dead8e10154baa6820305a9c851075c4d837016307"" >> /root/echo_ip.sh
+                echo -E "title="IP"" >> /root/echo_ip.sh
+                echo -E "date=`date +%Y-%m-%d`" >> /root/echo_ip.sh
+                echo -E "time=`date +%H:%M:%S`" >> /root/echo_ip.sh
+                echo -E "content="" >> /root/echo_ip.sh
+                echo -E "${date}" >> /root/echo_ip.sh
+                echo -E "${time}" >> /root/echo_ip.sh
+                echo -E "${newwanip}"" >> /root/echo_ip.sh
+                echo -E "curl "http://sc.ftqq.com/${key}.send?text=${title}" -d "&desp=${content}"" >> /root/echo_ip.sh
+                chmod +x /root/echo_ip.sh
+                sed -i "/exit 0/i\\sleep 100" /etc/echo_ip.sh
+                sed -i "/exit 0/i\\sh /root/echo_ip.sh" /etc/echo_ip.sh
                 ;;
             *)
                 exit 1
