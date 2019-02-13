@@ -13,22 +13,26 @@ elif [ ${OS} = "Linux"  ];then
                 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
                 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
                 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-                sed -i "/s/plugins=(git)/plugins=(/g" .zshrc
-                sed -i "/plugins=(/a\\git" ~/.zshrc
-                sed -i "/plugins(/a\\zsh-autosuggestions" ~/.zshrc
-                sed -i "/plugins=(/a\\zsh-syntax-highlighting" ~/.zshrc
-                sed -i "/plugins=(/a\\x" ~/.zshrc
-                sed -i "/plugins=(/a\\sudo" ~/.zshrc
-                sed -i "/plugins=(/a\\extract" ~/.zshrc
+                sed -i "/s/plugins=(git)/plugins=(x/g" .zshrc
+                sed -i "/plugins=(x/a\\git" ~/.zshrc
+                sed -i "/plugins(x/a\\zsh-autosuggestions" ~/.zshrc
+                sed -i "/plugins=(x/a\\zsh-syntax-highlighting" ~/.zshrc
+                #sed -i "/plugins=(x/a\\x" ~/.zshrc
+                sed -i "/plugins=(x/a\\sudo" ~/.zshrc
+                sed -i "/plugins=(x/a\\extract" ~/.zshrc
                 source ~/.zshrc
+                git config --global user.name "t0m1tu"
+                git config --global user.email "mzqgml@gmail.com"
                 ssh-keygen
-                #wget https://github.com/t0m1tu/ssr-backup/raw/master/ShadowsocksR-Python.zip
-                #unzip ShadowsocksR-Python.zip shadowsocksR
+                wget https://github.com/t0m1tu/ssr-backup/raw/master/ShadowsocksR-Python.zip
+                unzip ShadowsocksR-Python.zip shadowsocksR
                 #python ~/ShadowsocksR/shadowsocks/local.py -c ~/ShadowsocksR/config.json
                 #echo "export http_proxy=http://127.0.0.1:8118" >> /etc/enviroment
                 #echo "export https_proxy=http://127.0.0.1:8118" >> /etc/enviroment
                 #sudo /etc/init.d/privoxy start
                 cat ~/.ssh/id_rsa.pub
+                mv ssr.sh ~/ssr.sh
+                chmod +x ~/ssr.sh
                 ;;
             centos|fedora|rhel)
                 yumdnf="yum"
@@ -50,16 +54,18 @@ elif [ ${OS} = "Linux"  ];then
         sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
         git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-        sed -i "/s/plugins=(git)/plugins=(/g" .zshrc
-        sed -i "/plugins=(/a\\git" ~/.zshrc
-        sed -i "/plugins(/a\\zsh-autosuggestions" ~/.zshrc
-        sed -i "/plugins=(/a\\zsh-syntax-highlighting" ~/.zshrc
-        sed -i "/plugins=(/a\\x" ~/.zshrc
-        sed -i "/plugins=(/a\\sudo" ~/.zshrc
-        sed -i "/plugins=(/a\\extract" ~/.zshrc
+        sed -i "/s/plugins=(git)/plugins=(x/g" .zshrc
+        sed -i "/plugins=(x/a\\git" ~/.zshrc
+        sed -i "/plugins(x/a\\zsh-autosuggestions" ~/.zshrc
+        sed -i "/plugins=(x/a\\zsh-syntax-highlighting" ~/.zshrc
+        #sed -i "/plugins=(x/a\\x" ~/.zshrc
+        sed -i "/plugins=(x/a\\sudo" ~/.zshrc
+        sed -i "/plugins=(x/a\\extract" ~/.zshrc
         chsh -s zsh
         source ~/.zshrc
         ssh-keygen
+        git config --global user.name "t0m1tu"
+        git config --global user.email "mzqgml@gmail.com"
         cat ~/.ssh/id_rsa.pub
     fi
 else
