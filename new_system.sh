@@ -27,6 +27,7 @@ elif [ ${OS} = "Linux"  ];then
                 wget https://github.com/t0m1tu/ssr-backup/raw/master/ShadowsocksR-Python.zip
                 unzip ShadowsocksR-Python.zip shadowsocksR
                 #python ~/ShadowsocksR/shadowsocks/local.py -c ~/ShadowsocksR/config.json
+                #sudo echo "forward-socks5 / 127.0.0.1:1080 ." >> /etc/privoxy/config
                 #echo "export http_proxy=http://127.0.0.1:8118" >> /etc/enviroment
                 #echo "export https_proxy=http://127.0.0.1:8118" >> /etc/enviroment
                 #sudo /etc/init.d/privoxy start
