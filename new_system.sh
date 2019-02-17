@@ -58,14 +58,15 @@ elif [ ${OS} = "Linux"  ];then
                 git config --global user.email "mzqgml@gmail.com"
                 ssh-keygen
                 wget https://github.com/t0m1tu/ssr-backup/raw/master/ShadowsocksR-Python.zip
-                unzip ShadowsocksR-Python.zip shadowsocksR
-                #python ~/ShadowsocksR/shadowsocks/local.py -c ~/ShadowsocksR/config.json
-                #sudo echo "forward-socks5 / 127.0.0.1:1080 ." >> /etc/privoxy/config
-                #echo "export http_proxy=http://127.0.0.1:8118" >> /etc/enviroment
-                #echo "export https_proxy=http://127.0.0.1:8118" >> /etc/enviroment
-                #sudo /etc/init.d/privoxy start
+                unzip ShadowsocksR-Python.zip -d ~/shadowsocksR
+                rm -rf ShadowsocksR-Python.zip
+                echo '#!/bin/bash' > ~/ssr.sh
+                echo "sudo /etc/init.d/privoxy start" >> ~/ssr.sh
+                echo "export http_proxy=http://127.0.0.1:8118" >> ~/ssr.sh
+                echo "export https_proxy=http://127.0.0.1:8118" >> ~/ssr.sh
+                echo "python ~/ShadowsocksR/shadowsocks/local.py -c ~/ShadowsocksR/config.json" >> ~/ssr.sh
+                #echo "forward-socks5 / 127.0.0.1:1080 ." >> /etc/privoxy/config
                 cat ~/.ssh/id_rsa.pub
-                mv ssr.sh ~/ssr.sh
                 chmod +x ~/ssr.sh
                 ;;
             openwrt)
