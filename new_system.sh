@@ -2,7 +2,25 @@
 
 OS=`uname -s`
 if [ ${OS} = "Darwin"  ];then
-    sudo brew install git vim zsh curl wget openssh
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    sudo brew install git vim zsh curl wget openssh unzip unrar
+    sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    sed -i "/s/plugins=(git)/plugins=(x/g" .zshrc
+    sed -i "/plugins=(x/a\\git" ~/.zshrc
+    sed -i "/plugins(x/a\\zsh-autosuggestions" ~/.zshrc
+    sed -i "/plugins=(x/a\\zsh-syntax-highlighting" ~/.zshrc
+    #sed -i "/plugins=(x/a\\x" ~/.zshrc
+    sed -i "/plugins=(x/a\\sudo" ~/.zshrc
+    sed -i "/plugins=(x/a\\extract" ~/.zshrc
+    echo "alias ssr='export all_proxy=socks5://127.0.0.1:1086'" >> ~/.zshrc
+    echo "alias sss='unset all_proxy'" >> ~/.zshrc
+    source ~/.zshrc
+    git config --global user.name "t0m1tu"
+    git config --global user.email "mzqgml@gmail.com"
+    ssh-keygen
+
 elif [ ${OS} = "Linux"  ];then
     if [ -f /etc/os-release ];then
     # for the path if [ -x /etc/ ];then
