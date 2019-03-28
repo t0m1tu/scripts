@@ -3,7 +3,8 @@
 OS=`uname -s`
 if [ ${OS} = "Darwin"  ];then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    sudo brew install git vim zsh curl wget openssh unzip unrar
+    sudo brew install git vim zsh curl wget openssh unzip unrar python
+    sudo easy_install pip
     sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
     git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -20,6 +21,8 @@ if [ ${OS} = "Darwin"  ];then
     git config --global user.name "t0m1tu"
     git config --global user.email "mzqgml@gmail.com"
     ssh-keygen
+    cd /tmp && curl -s https://raw.githubusercontent.com/Piker-Alpha/freqVectorsEdit.sh/master/freqVectorsEdit.sh > /tmp/freqVectorsEdit.sh && chmod +x freqVectorsEdit.sh && /tmp/freqVectorsEdit.sh && sudo rm -rf /tmp/freqVectorsEdit.sh && sudo rm -rf /tmp/Mac-*.bin
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/xzhih/one-key-hidpi/master/hidpi-zh.sh)"                      #1，5，1
 
 elif [ ${OS} = "Linux"  ];then
     if [ -f /etc/os-release ];then
@@ -27,7 +30,7 @@ elif [ ${OS} = "Linux"  ];then
         source /etc/os-release
         case $ID in
             debian|ubuntu|devuan)
-                sudo apt-get install git vim zsh curl wget ssh unzip unrar privoxy
+                sudo apt-get install git vim zsh curl wget ssh unzip unrar privoxy bcmwl-kernel-source
                 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
                 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
                 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
