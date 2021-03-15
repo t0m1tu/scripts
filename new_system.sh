@@ -1,6 +1,11 @@
-#!/bin/bash
+#! /bin/bash
+[[ "$EUID" -ne '0' ]] && echo "Error:This script must be run as root!" && exit 1;
+
+red="\033[31m"
+black="\033[0m"
 
 OS=`uname -s`
+
 if [ ${OS} = "Darwin"  ];then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     sudo brew install git vim zsh curl wget openssh unzip unrar python
@@ -30,7 +35,9 @@ elif [ ${OS} = "Linux"  ];then
         source /etc/os-release
         case $ID in
             debian|ubuntu|devuan)
-                sudo apt-get install git vim zsh curl wget ssh unzip unrar privoxy bcmwl-kernel-source
+                sudo apt-get -y install git vim zsh curl wget 
+                sudo apt-get -y install ssh unzip unrar
+                sudo apt-get -y install bcmwl-kernel-source
                 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
                 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
                 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -133,3 +140,45 @@ elif [ ${OS} = "Linux"  ];then
 else
     echo "Other OS: ${OS}"
 fi
+
+
+cat > /lib/systemd/system/dnat.service <<\EOF
+[Unit]
+Description=动态设置iptables转发规则
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/root/
+EnvironmentFile=
+ExecStart=/bin/bash /usr/local/bin/dnat.sh
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+zsh(){
+    sudo $APT -y install git vim zsh curl wget 
+    sudo $APT -y install ssh unzip unrar
+}
+
+define(){
+    if command -v apt > /dev/null 2>&1; then
+        APT=apt;
+    fi
+    if command -v apt-get > /dev/null 2>&1; then
+        APT=apt-get;
+    fi
+    if command -v yum > /dev/null 2>&1; then
+        APT=yum;
+    fi
+    if command -v brwe > /dev/null 2>&1; then
+        APT=brew;
+    fi
+    if command -v pacman > /dev/null 2>&1; then
+        APT=pacman;
+    fi
+    return $APT
+}
