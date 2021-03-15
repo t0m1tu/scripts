@@ -1,2 +1,2 @@
-# new_system
+# scripts
 script to the new system
